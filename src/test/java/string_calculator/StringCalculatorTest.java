@@ -24,4 +24,18 @@ class StringCalculatorTest {
         assertEquals(3, stringCalculator.add("1,2"));
     }
 
+    @Test
+    void manyParamsTest() {
+        // To test add method with many numbers we use a list of numbers from 0 to `max`
+        StringBuilder numbers = new StringBuilder("0");
+        int max = 42_000;
+        for (int i = 1; i <= max; i++) {
+            numbers.append(",").append(i);
+        }
+        int result = (max * (max + 1)) / 2; // Arithmetic progression sum formula
+
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(result, stringCalculator.add(numbers.toString()));
+    }
+
 }
