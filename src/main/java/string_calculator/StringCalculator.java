@@ -12,12 +12,9 @@ public class StringCalculator {
             return 0;
         }
         List<Integer> numberList = getNumberList(numbers);
-        return switch (numberList.size()) {
-            case 0 -> 0;
-            case 1, 2 -> numberList.stream().mapToInt(Integer::intValue).sum();
-            default -> throw new IllegalArgumentException("The input string should contain at most two numbers");
-        };
-
+        return numberList.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     /**
