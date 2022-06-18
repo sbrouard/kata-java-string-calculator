@@ -38,4 +38,10 @@ class StringCalculatorTest {
         assertEquals(result, stringCalculator.add(numbers.toString()));
     }
 
+    @Test
+    void newLinesTest() {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(6, stringCalculator.add("1\n2,3"));
+    }
+
 }
