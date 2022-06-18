@@ -13,7 +13,8 @@ public class StringCalculator {
         if (numbers == null || numbers.isBlank()) {
             return 0;
         }
-        List<Integer> numberList = getNumberList(numbers);
+        List<Integer> numberList = this.getNumberList(numbers);
+        this.validateNumbers(numberList);
         return numberList.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
@@ -45,6 +46,18 @@ public class StringCalculator {
         return Arrays.stream(input.split(delimiter))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    /**
+     * Checks that the list of numbers doesn't contain any negative value
+     *
+     * @param numberList the list of numbers to check
+     */
+    private void validateNumbers(List<Integer> numberList) {
+        List<Integer> negatives = numberList.stream().filter(i -> i < 0).toList();
+        if (!negatives.isEmpty()) {
+            throw new NegativesNotAllowedException("Input string contains negative values ", negatives);
+        }
     }
 
 }
