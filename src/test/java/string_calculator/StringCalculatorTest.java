@@ -2,7 +2,7 @@ package string_calculator;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
 
@@ -54,6 +54,18 @@ class StringCalculatorTest {
     void testNewCustomDelimiter() {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(7, stringCalculator.add("//:)\n4:)3"));
+    }
+
+    @Test
+    void testNegatives() {
+        StringCalculator stringCalculator = new StringCalculator();
+        Exception exception = assertThrows(NegativesNotAllowedException.class, () -> stringCalculator.add("1,-2,3,-42,0"));
+        String message = exception.getMessage();
+        assertTrue(message.contains("-2"));
+        assertTrue(message.contains("-42"));
+        assertFalse(message.contains("0"));
+        assertFalse(message.contains("1"));
+        assertFalse(message.contains("3"));
     }
 
 }
