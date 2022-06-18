@@ -5,7 +5,7 @@ import java.util.List;
 
 public class StringCalculator {
 
-    private static final String SEPARATOR = ",";
+    private static final String DELIMITERS_REGEX = ",|\\n";
 
     public int add(String numbers) {
         if (numbers == null || numbers.isBlank()) {
@@ -24,7 +24,7 @@ public class StringCalculator {
      * @return the List constructed form the input String
      */
     private List<Integer> getNumberList(String numbers) {
-        return Arrays.stream(numbers.split(SEPARATOR))
+        return Arrays.stream(numbers.split(DELIMITERS_REGEX))
                 .map(Integer::parseInt)
                 .toList();
     }
